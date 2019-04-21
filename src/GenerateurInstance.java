@@ -4,7 +4,7 @@ public class GenerateurInstance {
 
     /**
      *
-     * @return la nouvelle instance aléatoire
+     * @return la nouvelle instance aléatoire en fonction d'une valeur saisie au clavier, cette valeur définit la hauteur, la largeur et le nombre de batiments générés
      */
     public static Plateau generer() {
         Scanner in = new Scanner(System.in);
@@ -20,7 +20,7 @@ public class GenerateurInstance {
         for(int i = 1; i <= plateau.getNbBatiments(); i++) {
             plateau.getBatiments().add(new Batiment((int)(min + (Math.random() * (max - min) + 1)),(int)(min + (Math.random() * (max - min) + 1)),i));
         }
-    return plateau;
+        return plateau;
     }
 
 }
