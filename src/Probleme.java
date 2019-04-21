@@ -7,47 +7,60 @@ import java.util.Scanner;
 
 public class Probleme {
 
+    Plateau plateauVide;
     public Probleme() {
-        Plateau plateauVide = null;
+        plateauVide = null;
+        int choix;
         Plateau resultat = null;
         Scanner in = new Scanner(System.in);
+        do {
         System.out.println("Algo Glouton :\n" +
                 "1 - Générer une instance aléatoire\n" +
                 "2 - Générer l'instance de test (instance du TP)");
-        int choix = in.nextInt();
-        switch (choix){
-            case 1:
-                plateauVide = GenerateurInstances.generer();
-                break;
-            case 2:
-                plateauVide = creerInstanceDeTest();
-                break;
-        }
-
-
-        Glouton algo = new Glouton();
-
-        System.out.println("Que voulez vous faire ?\n" +
-                "1 - Tester l'heuristique (1000 tri aléatoires)\n" +
-                "2 - Tester différentes sortes de tri");
-
         choix = in.nextInt();
-
-        switch (choix){
-            case 1:
-                resultat = algo.heuristique(plateauVide);
+            switch (choix) {
+                case 1:
+                    plateauVide = GenerateurInstances.generer();
+                    break;
+                case 2:
+                    plateauVide = creerInstanceDeTest();
+                    break;
+                    default:
+                        System.out.println("Merci d'entrer un choix valide");
+            }
+        }while(plateauVide==null);
+        Glouton algo = new Glouton();
+        while(true) {
+            System.out.println("Que voulez vous faire ?\n" +
+                    "1 - Tester l'heuristique (1000 tri aléatoires)\n" +
+                    "2 - Tester différentes sortes de tri\n" +
+                    "3 - Sortir");
+            choix = in.nextInt();
+            switch (choix) {
+                case 1:
+                    resultat = algo.heuristique(plateauVide);
+                    break;
+                case 2:
+                    resultat = algo.algoGlouton(plateauVide, plateauVide.getBatiments(), false);
+                    break;
+                case 3:
+                    break;
+                    default:
+                        break;
+            }
+            if(choix==3){
                 break;
-            case 2:
-                resultat = algo.algoGlouton(plateauVide, plateauVide.getBatiments(),false);
-                break;
+            }
+            if(resultat!=null) {
+                afficherPlateau(resultat);
+            }
         }
-        afficherPlateau(resultat);
-
     }
 
 
     public void afficherPlateau(Plateau plateau) {
         Batiment tmp = null;
+        int nb = plateauVide.getNbBatiments()-plateau.getNbBatiments();
 
         for(int i = 1; i <= plateau.getHauteur(); i++) {
             for(int j = 1; j <= plateau.getLargeur(); j++) {
@@ -63,15 +76,16 @@ public class Probleme {
                         tmp = bat;
                     }
                 }
-
+                // %3s pour que ça soit toujours lisible pour les numeros de batiments jusqu'à 99
                 if(batiment) {
-                    System.out.print(tmp.getNumeroBat()+" ");
+                    System.out.printf("%3s",tmp.getNumeroBat());
                 }else {
-                    System.out.print("X ");
+                    System.out.printf("%3s","-");
                 }
             }
             System.out.println();
         }
+        System.out.println(nb+" batiments n'ont pas pu être placés !");
     }
 
     public Plateau creerInstanceDeTest(){

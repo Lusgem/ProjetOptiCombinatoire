@@ -35,7 +35,14 @@ public class Glouton {
 		}
 		return true;
 	}
-		
+
+	/**
+	 *
+	 * @param instance le plateau vide
+	 * @param batiments la liste des batiments triée ou non
+	 * @param dejaTrie permet d'empecher la proposition de tri si l'algo a été lancé par l'heuristique
+	 * @return
+	 */
 	public Plateau algoGlouton(Plateau instance, ArrayList<Batiment> batiments, boolean dejaTrie) {
 		ArrayList<Batiment> tmpBatiments = new ArrayList<>();
 		Plateau resultat = new Plateau(instance.getHauteur(), instance.getLargeur());
@@ -69,7 +76,6 @@ public class Glouton {
 		Plateau plateauTmp;
 		Plateau plateauResultat = null;
 		int aireMax = 0;
-		
 		for(int i = 0; i < 1000; i++) {
 			int aireTmp = 0;
 			plateauTmp = algoGlouton(instance, triAleatoire(instance.getBatiments()),true);
@@ -85,26 +91,31 @@ public class Glouton {
 	}
 
 	public ArrayList<Batiment> tri(ArrayList<Batiment> batiments){
-		System.out.println("Quel tri souhaitez vous effectuer ? :\n" +
-				"1 - Tri par aire\n" +
-				"2 - Tri par encombrement\n" +
-				"3 - Tri aléatoire\n" +
-				"4 - Pas de tri\n");
-		Scanner in = new Scanner(System.in);
-		int choix = in.nextInt();
-		switch (choix){
-			case 1:
-				return triAire(batiments);
-			case 2:
-				return triEncombrement(batiments);
-			case 3:
-				return triAleatoire(batiments);
-			default:
-				break;
+		while(true) {
+			System.out.println("Quel tri souhaitez vous effectuer ? :\n" +
+					"1 - Tri par aire\n" +
+					"2 - Tri par encombrement\n" +
+					"3 - Tri aléatoire\n" +
+					"4 - Pas de tri\n");
+			Scanner in = new Scanner(System.in);
+			int choix = in.nextInt();
+			switch (choix) {
+				case 1:
+					return triAire(batiments);
+				case 2:
+					return triEncombrement(batiments);
+				case 3:
+					return triAleatoire(batiments);
+				case 4:
+					return batiments;
+				default:
+					System.out.println("Ce choix n'est pas valide !!!");
+					break;
+
+			}
 		}
 
 
-		return batiments;
 	}
 
 	public ArrayList<Batiment> triAire(ArrayList<Batiment> batiments){
@@ -113,7 +124,6 @@ public class Glouton {
 			resultat.add(new Batiment(b));
 		}
 		Collections.sort(resultat,Batiment.comparatorAire);
-
 		return resultat;
 	}
 
@@ -123,7 +133,6 @@ public class Glouton {
 			resultat.add(new Batiment(b));
 		}
 		Collections.sort(resultat,Batiment.comparatorEncombrement);
-
 		return resultat;
 	}
 

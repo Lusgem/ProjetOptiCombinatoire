@@ -15,13 +15,9 @@ public class GenerateurInstances {
         nbBat = in.nextInt();
         plateau.setNbBatiments(nbBat);
         int min = 1, max = (int)(2 * Math.sqrt(plateau.getHauteur()));
-
         for(int i = 1; i <= plateau.getNbBatiments(); i++) {
-            Batiment batiment = new Batiment((int)(min + (Math.random() * (max - min) + 1)),(int)(min + (Math.random() * (max - min) + 1)),i);
-            plateau.getBatiments().add(batiment);
+            plateau.getBatiments().add(new Batiment((int)(min + (Math.random() * (max - min) + 1)),(int)(min + (Math.random() * (max - min) + 1)),i));
         }
-
-
     return plateau;
     }
 
