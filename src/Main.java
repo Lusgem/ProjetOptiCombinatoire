@@ -16,12 +16,11 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("A bientot !");
+                    System.exit(0);
                     break;
 
             }
-            if(choix==2){
-                break;
-            }
+
         }
 
     }

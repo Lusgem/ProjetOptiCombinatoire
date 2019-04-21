@@ -19,10 +19,6 @@ public class Batiment {
         this.numeroBat = bat.numeroBat;
     }
 
-    /*@Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }*/
 
     public int getHauteur() {
         return hauteur;
