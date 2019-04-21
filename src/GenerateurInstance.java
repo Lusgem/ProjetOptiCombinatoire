@@ -1,7 +1,11 @@
 import java.util.Scanner;
 
-public class GenerateurInstances {
+public class GenerateurInstance {
 
+    /**
+     *
+     * @return la nouvelle instance aléatoire
+     */
     public static Plateau generer() {
         Scanner in = new Scanner(System.in);
         int hauteur,largeur, nbBat;

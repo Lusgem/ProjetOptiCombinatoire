@@ -80,6 +80,7 @@ public class Batiment {
         }
     };
 
+
     public static Comparator<Batiment> comparatorEncombrement = new Comparator<Batiment>() {
         @Override
         public int compare(Batiment o1, Batiment o2) {

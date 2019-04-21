@@ -8,6 +8,8 @@ import java.util.Scanner;
 public class Probleme {
 
     Plateau plateauVide;
+
+
     public Probleme() {
         plateauVide = null;
         int choix;
@@ -20,7 +22,7 @@ public class Probleme {
         choix = in.nextInt();
             switch (choix) {
                 case 1:
-                    plateauVide = GenerateurInstances.generer();
+                    plateauVide = GenerateurInstance.generer();
                     break;
                 case 2:
                     plateauVide = creerInstanceDeTest();
@@ -58,6 +60,10 @@ public class Probleme {
     }
 
 
+    /**
+     * Permet d'afficher le plateau, l'emplacment des batiments est marqué de leur numéro, si il n'y a pas de batiment, un simple - est écrit
+     * @param plateau
+     */
     public void afficherPlateau(Plateau plateau) {
         Batiment tmp = null;
         int nb = plateauVide.getNbBatiments()-plateau.getNbBatiments();
@@ -88,6 +94,10 @@ public class Probleme {
         System.out.println(nb+" batiments n'ont pas pu être placés !");
     }
 
+    /**
+     * Retourne l'instance de test présente dans le sujet de TP et dans problème.txt
+     * @return le plateau vide décrit dans probleme.txt
+     */
     public Plateau creerInstanceDeTest(){
         Plateau plateau=null;
         try {

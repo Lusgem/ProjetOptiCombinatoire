@@ -5,7 +5,15 @@ import java.util.Scanner;
 
 public class Glouton {
 
-	
+
+	/**
+	 * Fonction permettant de tester si le batiment rentrerait dans la limite du plateau
+	 * @param i
+	 * @param j
+	 * @param b
+	 * @param plateau
+	 * @return
+	 */
 	private boolean testLimites(int i, int j, Batiment b, Plateau plateau) {
 		if((i + b.getHauteur() - 1 <= plateau.getHauteur()) && (j + b.getLargeur() - 1 <= plateau.getLargeur())) {
 			return true;
@@ -13,7 +21,15 @@ public class Glouton {
 			return false;
 		}
 	}
-	
+
+	/**
+	 * Fonction permettant de tester si le batiment se superpose à un autre batiment présent sur le plateau
+	 * @param i
+	 * @param j
+	 * @param b
+	 * @param plateau
+	 * @return
+	 */
 	private boolean testSuperposition(int i, int j, Batiment b, Plateau plateau) {
 		if(plateau.getBatiments().isEmpty()) {
 			return true;
@@ -71,9 +87,14 @@ public class Glouton {
 		resultat.setNbBatiments(nbBatAjoutes);
 		return resultat;
 	}
-	
+
+	/**
+	 *
+	 * @param instance
+	 * @return le plateau correspondant à la solution optimale trouvée par l'heuristique
+	 */
 	public Plateau heuristique(Plateau instance) {
-		Plateau plateauTmp;
+		Plateau plateauTmp ;
 		Plateau plateauResultat = null;
 		int aireMax = 0;
 		for(int i = 0; i < 1000; i++) {
@@ -90,6 +111,11 @@ public class Glouton {
 		return plateauResultat;
 	}
 
+	/**
+	 * Menu permettant de chosir le tri qu'on souhaite effectuer
+	 * @param batiments
+	 * @return la liste triée en fonction du choix réalisé
+	 */
 	public ArrayList<Batiment> tri(ArrayList<Batiment> batiments){
 		while(true) {
 			System.out.println("Quel tri souhaitez vous effectuer ? :\n" +
@@ -118,6 +144,11 @@ public class Glouton {
 
 	}
 
+	/**
+	 *
+	 * @param batiments
+	 * @return la liste triée par aire
+	 */
 	public ArrayList<Batiment> triAire(ArrayList<Batiment> batiments){
 		ArrayList<Batiment> resultat = new ArrayList();
 		for(Batiment b : batiments){
@@ -127,6 +158,11 @@ public class Glouton {
 		return resultat;
 	}
 
+	/**
+	 *
+	 * @param batiments
+	 * @return la liste triée par encombrement
+	 */
 	public ArrayList<Batiment> triEncombrement(ArrayList<Batiment> batiments){
 		ArrayList<Batiment> resultat = new ArrayList();
 		for(Batiment b : batiments){
@@ -136,6 +172,11 @@ public class Glouton {
 		return resultat;
 	}
 
+	/**
+	 *
+	 * @param batiments
+	 * @return la liste des batiments triée aléatoirement
+	 */
 	public ArrayList<Batiment> triAleatoire(ArrayList<Batiment> batiments){
 		ArrayList<Batiment> resultat = new ArrayList<Batiment>();
 		ArrayList<Batiment> tmp = new ArrayList();
